@@ -1,4 +1,3 @@
-// esto es mysql
 
 CREATE USER 'mySQLUser'@'localhost' IDENTIFIED BY '1234';
 
