@@ -9,7 +9,7 @@ GRANT ALL PRIVILEGES ON juegos_db.* TO 'mySQLUser'@'localhost';
 USE juegos_db;
 
 CREATE TABLE juegos (
-    id INT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(255),
     consola VARCHAR(255)
 );

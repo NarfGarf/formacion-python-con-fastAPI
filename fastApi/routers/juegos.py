@@ -10,7 +10,7 @@ class Juego(BaseModel):
     consola:str
 
 
-
+# get
 @juegoRouter.get("/juegos/")
 async def getJuegos():
     juegoList=[]
@@ -20,6 +20,15 @@ async def getJuegos():
         juegoList.append(Juego(id=x[0],nombre=x[1],consola=x[2]))
 
     return juegoList
+
+# get from id
+@juegoRouter.get("/juego/{id}")
+async def getJuegoFromId(id:int):
+    client.cursor.execute("SELECT * FROM juegos WHERE id = %s", (id,))
+    row = client.cursor.fetchone()
+    if not row:
+        raise HTTPException(status_code=404, detail="Juego no encontrado")
+    return Juego(id=row[0], nombre=row[1], consola=row[2])
 
 # create
 @juegoRouter.post("/juego/", status_code=201)
@@ -43,10 +52,11 @@ async def deleteJuego(id:int):
     return {"success":"juego borrado"}
 
 # update
-@juegoRouter.put("/juego/")
+@juegoRouter.put("/juego")
 async def putJuego(juego: Juego):
     client.cursor.execute("UPDATE juegos SET nombre = %s,consola = %s WHERE id = %s",( juego.nombre, juego.consola,juego.id))
     client.conn.commit()
-    if client.cursor.rowcount == 0:
-        raise HTTPException(status_code=404,detail="juego no encontrado")
+    #if client.cursor.rowcount == 0: esto tambien se llama cuando el juego existe pero no se actualiza nada porque los datos son iguales
+    #    print(f"UPDATE juegos SET nombre = {juego.nombre},consola = {juego.consola} WHERE id = {juego.id}")
+    #    raise HTTPException(status_code=404,detail="juego no encontrado")
     return {"success":"juego actualizado"}
