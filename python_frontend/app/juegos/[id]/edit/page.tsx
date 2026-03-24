@@ -7,5 +7,10 @@ export default async function Page(props: { params: Promise<{ id: number }> }) {
     const params = await props.params;
     const id = params.id;
     const juego: Juego = await getJuegoFromID(id);
-    return <Form juego={juego} />;
+    return (
+        <main>
+        <h1 className="text-5xl font-bold text-center text-yellow-600 py-8 mb-6">Actualizar Juego</h1>
+        <Form juego={juego} />
+        </main>
+    );
 }

@@ -7,6 +7,7 @@ import Link from 'next/link';
 
 export default function createJuegoForm() {
   return (
+    <div className="max-w-md mx-auto">
     <form action={createJuego}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         {/* Nombre de Juego */}
@@ -59,5 +60,6 @@ export default function createJuegoForm() {
         </button>
       </div>
     </form>
+    </div>
   );
 }

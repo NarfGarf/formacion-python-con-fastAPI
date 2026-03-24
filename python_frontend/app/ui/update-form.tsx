@@ -8,8 +8,9 @@ import Link from 'next/link';
 export default function UpdateJuegoForm({juego}: {juego: Juego;}) {
   const updateJuegoWithId = updateJuego.bind(null, juego);
   return (
-    <form action={updateJuegoWithId}>
-      <div className="rounded-md bg-gray-50 p-4 md:p-6">
+    <div className="max-w-md mx-auto">
+      <form action={updateJuegoWithId}>
+      <div className="rounded-md bg-gray-50 p-3 md:p-4">
         {/* Nombre de Juego */}
         <div className="mb-4">
           <label className="mb-2 block text-sm font-medium">
@@ -61,6 +62,7 @@ export default function UpdateJuegoForm({juego}: {juego: Juego;}) {
           Editar Juego
         </button>
       </div>
-    </form>
+      </form>
+    </div>
   );
 }
